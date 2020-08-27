@@ -1,0 +1,10 @@
+the plan for the snake is that an array is created and the head sets a square to a value before moving
+every moving timestamp, each square goes down in value by 1
+when it gets to zero, the square is deemed no longer part of the snake
+this allows drawing curves into the snake, based of its neighbors having one higher if its in front, and one less if it has less
+
+board array notes
+0 means it's nothing/blank
+> 0 means it's a part of the snake
+-1 means its the apple/goal
+<-1 shouldn't happen
