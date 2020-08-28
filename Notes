@@ -7,9 +7,3 @@ ideas for that
   make a 3x3 grid out of the square
     possibly kinda scrunched toward the edges
   fill the center grid space, and the two connecting to neighbors where neighbor snake val ~ itself +-1
-
-board array notes
-0 means it's nothing/blank
-> 0 means it's a part of the snake
--1 means its the apple/goal
-<-1 shouldn't happen
