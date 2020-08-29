@@ -40,44 +40,79 @@ void draw() {
   //when trigger == 1, que button and set trigger to 2
   //when button un pressed, set trigger to 0
 
+  int i;
   if(keyPressed) {
-    if(key == UP) {//Up pressed
-      trigger[0]++;
+//-------------------------------------------------------------------------------------------------
+    i = 0;
+    if(keyCode == UP) {//Up pressed
+      if(trigger[i] == 0) {//if its the first frame that this button is pressed
+        trigger[i] = 1;//set trigger to 1, stopping above from running and triggering quePress
+      }
       println("up pressed");
     }else{//Up not pressed (!released)
-      trigger[0] = 0;
+      trigger[i] = 0;
     }
-    if(key == RIGHT) {//Right pressed
-      trigger[1]++;
-    }else{//Right not pressed (!released)
-      trigger[1] = 0;
+//-------------------------------------------------------------------------------------------------
+    i = 1;
+    if(keyCode == RIGHT) {//Right pressed
+      if(trigger[i] == 0) {//if its the first frame that this button is pressed
+        trigger[i] = 1;//set trigger to 1, stopping above from running and triggering quePress
+      }
+      println("up pressed");
+    }else{//Up not pressed (!released)
+      trigger[i] = 0;
     }
-    if(key == DOWN) {//Down pressed
-      trigger[2]++;
-    }else{//Down not pressed (!released)
-      trigger[2] = 0;
+//-------------------------------------------------------------------------------------------------
+    i = 2;
+    if(keyCode == DOWN) {//Down pressed
+      if(trigger[i] == 0) {//if its the first frame that this button is pressed
+        trigger[i] = 1;//set trigger to 1, stopping above from running and triggering quePress
+      }
+      println("up pressed");
+    }else{//Up not pressed (!released)
+      trigger[i] = 0;
     }
-    if(key == LEFT) {//Left pressed
-      trigger[3]++;
-    }else{//Left not pressed (!released)
-      trigger[3] = 0;
+//-------------------------------------------------------------------------------------------------
+    i = 3;
+    if(keyCode == LEFT) {//Left pressed
+      if(trigger[i] == 0) {//if its the first frame that this button is pressed
+        trigger[i] = 1;//set trigger to 1, stopping above from running and triggering quePress
+      }
+      println("up pressed");
+    }else{//Up not pressed (!released)
+      trigger[i] = 0;
     }
+//-------------------------------------------------------------------------------------------------
   }
-  if(trigger[0] == 1) {
-    quePress(0);
+//-------------------------------------------------------------------------------------------------
+  i = 0;
+  if(trigger[i] == 1) {
+    trigger[i] = 2;
+    quePress(i);
   }
-  if(trigger[1] == 1) {
-    quePress(1);
-  }
-  if(trigger[2] == 1) {
-    quePress(2);
-  }
-  if(trigger[3] == 1) {
-    quePress(3);
-  }
+//-------------------------------------------------------------------------------------------------
+i = 1;
+if(trigger[i] == 1) {
+  trigger[i] = 2;
+  quePress(i);
+}
+//-------------------------------------------------------------------------------------------------
+i = 2;
+if(trigger[i] == 1) {
+  trigger[i] = 2;
+  quePress(i);
+}
+//-------------------------------------------------------------------------------------------------
+i = 3;
+if(trigger[i] == 1) {
+  trigger[i] = 2;
+  quePress(i);
+}
+//-------------------------------------------------------------------------------------------------
 }
 
 void quePress(int toQue) {
+  println("queing " + toQue);
   //tell which index is the next available -1
   //make that index store whats being qued
   for(int i = 0; i < moveQue.length; i++) {
