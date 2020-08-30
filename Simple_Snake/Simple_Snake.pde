@@ -10,7 +10,7 @@ int[] headPos = new int[2];//head position where [0] -> x axis, [1] -> y axis
 int[] direction = new int [2];//direction of snake head, 1-4 maps to north-south clockwise
 //Note: it is a 1d array so that movements can be qued in the order the come in
 //how frame time is converted into timesteps without queing one button press many times needs to be implimented
-int[] trigger = new int[4];//this is used in queing inputs,
+int[] trigger = new int[5];//this is used in queing inputs,
 //Note: 0-3 maps to up-left clockwise
 int[] moveQue = new int[2];//the que for movements, only ques two moves
 
@@ -22,7 +22,7 @@ void setup() {
   for (int i = 0; i < (moveQue.length - 1); i++) {
     moveQue[i] = -1;
     println("");
-    println(moveQue.length); 
+    println(moveQue.length);
   }
 }
 
@@ -81,9 +81,16 @@ void draw() {
       trigger[i] = 0;
     }
     //-------------------------------------------------------------------------------------------------
-    if (key == ' ') {
-      moveDownQue();
+
+    i = 4;
+    if (key== ' ') {//Left pressed
+      if (trigger[i] == 0) {//if its the first frame that this button is pressed
+        trigger[i] = 1;//set trigger to 1, stopping above from running and triggering quePress
+      }
+    } else {//Up not pressed (!released)
+      trigger[i] = 0;
     }
+  //---------------------
   }
   //-------------------------------------------------------------------------------------------------
   i = 0;
@@ -108,6 +115,11 @@ void draw() {
   if (trigger[i] == 1) {
     trigger[i] = 2;
     quePress(i);
+  }
+  i = 4;
+  if (trigger[i] == 1) {
+    trigger[i] = 2;
+    moveDownQue();
   }
   //-------------------------------------------------------------------------------------------------
 }
@@ -155,11 +167,11 @@ void update() {
 }
 
 void moveDownQue() {
-  for (int i = 0; i < moveQue.length; i++) {
+  for (int i = 0; i < (moveQue.length - 1); i++) {
     if (i == moveQue.length) {
       moveQue[i] = -1;
     } else {
-      println("trying ln 162 with: " + i);
+      println("trying ln 163 with: " + i);
       moveQue[i] = moveQue[i+1];
     }
   }
